@@ -2,6 +2,8 @@ package se.yrgo.libraryapp.validators;
 
 import io.jooby.JoobyTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import se.yrgo.libraryapp.App;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,13 +20,9 @@ public class RealNameTest {
         assertThrows(NullPointerException.class, () -> RealName.validate(null));
     }
 
-    @Test
-    void testValidateInvalidName() {
-        assertFalse(RealName.validate("frack"));
-    }
-
-    @Test
-    void testValidateInvalidNames() {
-        assertFalse(RealName.validate("frack Blimey "));
+    @ParameterizedTest
+    @ValueSource(strings = {"frack", "Blimey shite", "xx DeMoN xx", "@_.demon@£€"})
+    void testValidateInvalidName(String name) {
+        assertFalse(RealName.validate(name));
     }
 }
