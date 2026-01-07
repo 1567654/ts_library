@@ -45,11 +45,11 @@ public class UserDaoIntegrationTest {
         assertThat(maybeLoginInfo.get().getUserId()).isEqualTo(userId);
     }
 
-    @Test
-    void register() {
-        final String username = "test";
-        final UserId userId = UserId.of(1);
-        final String passwordHash =
-        UserDao userDao = new UserDao(ds);
-    }
+//    @Test
+//    void register() {
+//        final String username = "test";
+//        final UserId userId = UserId.of(1);
+//        final String passwordHash =
+//        UserDao userDao = new UserDao(ds);
+//    }
 }
