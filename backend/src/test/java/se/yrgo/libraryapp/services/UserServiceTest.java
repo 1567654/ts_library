@@ -25,9 +25,9 @@ public class UserServiceTest {
         final UserId id = UserId.of(userId);
         final String username = "testuser";
         final String password = "password";
-        final String passwordHash =
-                "$argon2i$v=19$m=16,t=2,p=1$QldXU09Sc2dzOWdUalBKQw$LgKb6x4usOpDLTlXCBVhxA";
-        final LoginInfo info = new LoginInfo(id, passwordHash);
+//        final String passwordHash =
+//                "$argon2i$v=19$m=16,t=2,p=1$QldXU09Sc2dzOWdUalBKQw$LgKb6x4usOpDLTlXCBVhxA";
+        final LoginInfo info = new LoginInfo(id, password);
         @SuppressWarnings("deprecation")
         final PasswordEncoder passwordEncoder =
                 org.springframework.security.crypto.password.NoOpPasswordEncoder.getInstance();

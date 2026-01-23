@@ -87,11 +87,11 @@ public class BookDao {
                 + "ORDER BY return_date ASC";
 
         try (Connection conn = ds.getConnection();
-                Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery(query)) {
+                PreparedStatement stmt = conn.prepareStatement(query);
+                ResultSet rs = stmt.executeQuery()) {
             return getOverdueFromSet(rs);
         } catch (SQLException ex) {
-            logger.error("Uable to get books", ex);
+            logger.error("Unable to get books", ex);
             return List.of();
         }
     }
