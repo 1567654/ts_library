@@ -21,7 +21,7 @@ public class RealNameTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"frack", "Blimey shite", "xx DeMoN xx", "@_.demon@£€"})
+    @ValueSource(strings = {"frack", "Blimey shite", "xx DeMoN xx", "@_.demon@£€", "Nisse<img src=\"https://placehold.co/1x1\" onload=\"alert(`You have been hacked`)\">"})
     void testValidateInvalidName(String name) {
         assertFalse(RealName.validate(name));
     }

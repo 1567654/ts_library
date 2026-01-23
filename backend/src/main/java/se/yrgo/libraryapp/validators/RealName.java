@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +19,8 @@ import org.slf4j.LoggerFactory;
 public final class RealName {
     private static Logger logger = LoggerFactory.getLogger(RealName.class);
     private static final Set<String> invalidWords = new HashSet<>();
+    private static Pattern regex = Pattern.compile("[\\-@._a-zA-Z0-9]{4,}");
+
 
     static {
         try (InputStream is = RealName.class.getClassLoader().getResourceAsStream("bad_words.txt");
@@ -35,6 +38,8 @@ public final class RealName {
 
     /**
      * Validates if the given name is a valid and proper name.
+     * Name can only contain ASCII letters, numbers and the characters @, ., _ and -.
+     * It should not contain any other letters, not even whitespace.
      * 
      * @param name the name to check
      * @return true if valid, false if not
@@ -48,6 +53,6 @@ public final class RealName {
                 return false;
             }
         }
-        return true;
+        return regex.matcher(cleanName).matches();
     }
 }

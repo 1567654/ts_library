@@ -42,7 +42,7 @@ public class UserService {
     }
 
     public boolean isNameAvailable(String name) {
-        if (name == null || name.trim().length() > 3) {
+        if (name == null || name.trim().length() < 3) {
             return false;
         }
         return userDao.isNameAvailable(name);
